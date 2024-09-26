@@ -1,9 +1,13 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from statsmodels.tsa.arima.model import ARIMA
+from sklearn.metrics import root_mean_squared_error
 
-# Helper for testing the model by training on 2021 Jan-Aug data, then forecasting for
-# 2021 Sep-Dec and comparing that with observed data for 2021 Sep-Dec.
+# Run this script to test the model.
+#
+# Trains on 2021 Jan-Aug daily data, then forecasts for 2021 Sep-Dec daily.
+# Compares that with the observed data for 2021 Sep-Dec.
+#
 
 # load dataset
 daily_data=pd.read_csv('data_daily.csv', index_col=0, parse_dates=True)
@@ -18,10 +22,10 @@ test=daily_data.iloc[num_jan_to_aug_days:,:] # Sep-Dec
 model = ARIMA(train, order=(2,2,1))
 model_fit = model.fit()
 
-# forecast for rest of the year, Sep-Dec 
+# forecast for rest of the year
 daily_forecast = model_fit.forecast(steps=(365-num_jan_to_aug_days))
 
-# print & plot monthly observed & forecasted
+# print & plot observed vs. forecasted
 grouper = pd.Grouper(freq='ME')
 observed_monthly = test.groupby(grouper).sum()
 forecasted_monthly = daily_forecast.groupby(grouper).sum().astype(int)
@@ -34,14 +38,19 @@ combined_monthly['Forecast'] = forecasted_monthly.values
 combined_monthly['Error %'] = ((combined_monthly['Forecast'] - combined_monthly['Observed'])/combined_monthly['Observed'])*100 
 combined_monthly.set_index('Month', inplace=True)
 
+# rmse for the daily forecast
+daily_forecast_rmse = root_mean_squared_error(test, daily_forecast)
+
 print()
-print("**************************************")
-print("***** 2021 Scanned Receipt Count *****")
-print("**************************************")
+print("---------------------------------------------")
+print("RMSE for 2021 Sep-Dec daily forecast =", round(daily_forecast_rmse))
+print("---------------------------------------------")
 print()
+print("-------------------------------------")
+print("      2021 Monthly Receipt Count     ")
+print("-------------------------------------")
 print(combined_monthly)
-print()
-print("**************************************")
+print("-------------------------------------")
 print()
 
 fig, (ax1, ax2) = plt.subplots(1,2, figsize=(18,6), layout='constrained')

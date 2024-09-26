@@ -4,7 +4,7 @@ from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 from statsmodels.tsa.stattools import adfuller
 
-# Helper script for choosing the p, d & q parameters for our model
+# Helper script for choosing the p, d & q parameters for our model.
 # 
 # d param
 # -------
@@ -15,15 +15,15 @@ from statsmodels.tsa.stattools import adfuller
 #
 # p param
 # -------
-# From the PACF plot with second order differencing we see that 2 lags cross the significance limit.
-# So we'll go with p = 2
+# From the PACF plots for both first and second order differencing we see that 2 lags cross the
+# significance limit. So we'll go with p = 2.
 #
 # q param
 # -------
-# From the ACF plot with second order differencing we see that 2 lags cross the significance limit.
-# q = 2 indeed gave closer results during model testing and forecasting for 2021 Sep-Dec, however it
-# seemed to over-forecast for 2022, so went with q = 1 which gave better looking results for 2022
-# and close enough results for 2021 Sep-Dec
+# From the ACF plots for both first and second order differencing we see that 2 lags cross the
+# significance limit. q = 2 indeed gave closer results during model testing and forecasting for
+# 2021 Sep-Dec, however it seemed to over-forecast for 2022, so went with q = 1 which gave better
+# looking results for 2022 and close enough results for 2021 Sep-Dec.
 #
 
 # load dataset
