@@ -3,7 +3,7 @@ My first exercise in time series forecasting. I had fun learning about it and im
 ## Problem
 Forecast total scanned receipts for each month in year 2022 given the number of scanned receipts for each day in 2021
 ## Solution
-My solution uses ARIMA. After reading up on the various options such as ARIMA, SARIMA and LSTM, I decided to start with the simplest approach using ARIMA. It gave reasonablly good results.
+My solution uses ARIMA. After reading up on the various options such as ARIMA, SARIMA and LSTM, I decided to start with the simplest approach using ARIMA. It gave reasonably good results.
 ### How to run the solution
 #### Files
 - data_daily.csv - contains the number of scanned receipts for each day in 2021
