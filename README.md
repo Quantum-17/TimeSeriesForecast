@@ -72,7 +72,7 @@ Dec    309948684  296434582 -4.360109
 ![Screenshot of model test results graphs.](/images/TestResult-2-2-1.png)
 
 ### Model Parameters and Evaluation
-The crux of the solution lies in finding the right values for the p, d, q parameters for the ARIMA model. Running model_params.py is the starting point.
+The crux of the solution lies in finding the right values for the p, d, q parameters for the ARIMA model. Running model_params.py is the starting point. I found this [article](https://analyticsindiamag.com/ai-mysteries/quick-way-to-find-p-d-and-q-values-for-arima/) incredibly useful for this part of the exercise, many thanks!
 
 #### d param
 From the graphs plotted by model_params.py we can see that the data becomes stationary after one order
