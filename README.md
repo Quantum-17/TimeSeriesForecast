@@ -70,3 +70,132 @@ Dec    309948684  296434582 -4.360109
 </pre>
 
 ![Screenshot of model test results graphs.](/images/TestResult-2-2-1.png)
+
+### Model Parameters and Evaluation
+The crux of the solution lies in finding the right values for the p, d, q parameters for the ARIMA model. Running model_params.py is the starting point.
+
+#### d param
+From the graphs plotted by model_params.py we can see that the data becomes stationary after one order
+of differencing, d = 1. However, d = 2 did better when testing the model by training on 2021 Jan-Aug
+data, then forecasting for 2021 Sep-Dec and comparing that with the observed data for 2021 Sep-Dec.
+d = 2 also gave better looking results when forecasting for 2022.
+
+#### p param
+From the PACF plots for both first and second order differencing we see that 2 lags cross the significance limit.
+So we'll go with p = 2.
+
+#### q param
+From the ACF plots for both first and second order differencing we see that 2 lags cross the significance limit.
+q = 2 indeed gave closer results during model testing and forecasting for 2021 Sep-Dec, however it
+seemed to over-forecast for 2022, so went with q = 1 which gave better looking results for 2022
+and close enough results for 2021 Sep-Dec.
+
+#### Model Evaluation with different combinations of p, d, q
+Our contenders are:
+- (p = 2, d = 1, q = 2)
+- (p = 2, d = 1, q = 1)
+- (p = 2, d = 2, q = 2)
+- (p = 2, d = 2, q = 1)
+  
+---
+##### (p = 2, d = 1, q = 2) Results don't look good!
+
+<pre>
+---------------------------------------------
+RMSE for 2021 Sep-Dec daily forecast = 563835
+---------------------------------------------
+
+-------------------------------------
+      2021 Monthly Receipt Count
+-------------------------------------
+        Observed   Forecast   Error %
+Month
+Sep    281146154  277350014 -1.350237
+Oct    295965185  286591369 -3.167202
+Nov    296085162  277346486 -6.328813
+Dec    309948684  286591369 -7.535865
+-------------------------------------
+</pre>
+
+![Screenshot of model test results graphs.](/images/TestResult-2-1-2.png)
+![Screenshot of forecast results graphs.](/images/Forecast-2-1-2.png)
+
+<br>
+
+---
+
+##### (p = 2, d = 1, q = 1) Results don't look good, d = 1 is out!
+
+<pre>
+---------------------------------------------
+RMSE for 2021 Sep-Dec daily forecast = 571004
+---------------------------------------------
+
+-------------------------------------
+      2021 Monthly Receipt Count
+-------------------------------------
+        Observed   Forecast   Error %
+Month
+Sep    281146154  277075069 -1.448032
+Oct    295965185  286315598 -3.260379
+Nov    296085162  277079611 -6.418947
+Dec    309948684  286315598 -7.624838
+-------------------------------------
+</pre>
+
+![Screenshot of model test results graphs.](/images/TestResult-2-1-1.png)
+![Screenshot of forecast results graphs.](/images/Forecast-2-1-1.png)
+
+<br>
+
+---
+
+##### (p = 2, d = 2, q = 2) 2021 forecast looks great, but 2022 seems to be over forecast
+
+<pre>
+---------------------------------------------
+RMSE for 2021 Sep-Dec daily forecast = 257090
+---------------------------------------------
+
+-------------------------------------
+      2021 Monthly Receipt Count
+-------------------------------------
+        Observed   Forecast   Error %
+Month
+Sep    281146154  278998535 -0.763880
+Oct    295965185  298213374  0.759613
+Nov    296085162  298209547  0.717491
+Dec    309948684  318090739  2.626904
+-------------------------------------
+</pre>
+
+![Screenshot of model test results graphs.](/images/TestResult-2-2-2.png)
+![Screenshot of forecast results graphs.](/images/Forecast-2-2-2.png)
+
+<br>
+
+---
+
+##### (p = 2, d = 2, q = 1) 2022 forecast looks better and 2021 forecast is close enough, this is our winner!
+
+<pre>
+---------------------------------------------
+RMSE for 2021 Sep-Dec daily forecast = 399715
+---------------------------------------------
+
+-------------------------------------
+      2021 Monthly Receipt Count
+-------------------------------------
+        Observed   Forecast   Error %
+Month
+Sep    281146154  276015732 -1.824824
+Oct    295965185  288971605 -2.362974
+Nov    296085162  283261058 -4.331221
+Dec    309948684  296434582 -4.360109
+-------------------------------------
+</pre>
+
+![Screenshot of model test results graphs.](/images/TestResult-2-2-1.png)
+![Screenshot of forecast results graphs.](/images/Forecast-2-2-1.png)
+
+
