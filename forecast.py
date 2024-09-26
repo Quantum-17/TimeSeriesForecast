@@ -2,32 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from statsmodels.tsa.arima.model import ARIMA
 
-''' 
-Run this script to see the forecast for 2022.
-
-Output printed when this file is run:
-
-***********************************
-*****  Scanned Receipt Count  *****
-***********************************
-
-       2021-Observed  2022-Forecast
-Month                              
-Jan        236736687      321027070
-Feb        220033460      297377066
-Mar        248608625      337441806
-Apr        250644830      334763984
-May        263151748      354403760
-Jun        260656840      351178777
-Jul        274776003      371365713
-Aug        283943231      379985722
-Sep        281146154      375935515
-Oct        295965185      396947676
-Nov        296085162      392350309
-Dec        309948684      413909629
-
-***********************************
-'''
+# Run this script to see the forecast for 2022.
 
 # load dataset
 daily_data=pd.read_csv('data_daily.csv', index_col=0, parse_dates=True)
@@ -67,13 +42,11 @@ combined_monthly['2022-Forecast'] = forecasted_monthly.values
 combined_monthly.set_index('Month', inplace=True)
 
 print()
-print("***********************************")
-print("*****  Scanned Receipt Count  *****")
-print("***********************************")
-print()
+print("-----------------------------------")
+print("   Monthly Scanned Receipt Count   ")
+print("-----------------------------------")
 print(combined_monthly)
-print()
-print("***********************************")
+print("-----------------------------------")
 print()
 
 fig = plt.figure(figsize=(18,6), layout='constrained')
