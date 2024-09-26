@@ -17,6 +17,30 @@ My solution uses ARIMA. After reading up on the various options such as ARIMA, S
 - statsmodels.graphics.tsaplots (needed only if you are running model_params.py)
 - statsmodels.tsa.stattools (needed only if you are running model_params.py)
 #### Run the forecast
-- python3 forecast.py
-#### Run the test
-- python3 model_test.py 
+```console 
+python3 forecast.py
+```
+
+You should see the following print out and graph
+<pre>
+-----------------------------------
+   Monthly Scanned Receipt Count
+-----------------------------------
+       2021-Observed  2022-Forecast
+Month                              
+Jan        236736687      321027070
+Feb        220033460      297377066
+Mar        248608625      337441806
+Apr        250644830      334763984
+May        263151748      354403760
+Jun        260656840      351178777
+Jul        274776003      371365713
+Aug        283943231      379985722
+Sep        281146154      375935515
+Oct        295965185      396947676
+Nov        296085162      392350309
+Dec        309948684      413909629
+-----------------------------------
+</pre>
+
+![Screenshot of forecast results graphs.](/images/Forecast-2-2-1.png)
