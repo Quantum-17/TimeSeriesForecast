@@ -150,7 +150,7 @@ Dec    309948684  286315598 -7.624838
 
 ---
 
-##### (p = 2, d = 2, q = 2) 2021 forecast looks great, but 2022 seems to be over forecast
+##### (p = 2, d = 2, q = 2) 2021 forecast vs. observed looks great, but 2022 seems to be over forecast
 
 <pre>
 ---------------------------------------------
@@ -176,7 +176,7 @@ Dec    309948684  318090739  2.626904
 
 ---
 
-##### (p = 2, d = 2, q = 1) 2022 forecast looks better and 2021 forecast is close enough, this is our winner!
+##### (p = 2, d = 2, q = 1) 2022 forecast looks better and 2021 forecast vs. observed is close enough, this is our winner!
 
 <pre>
 ---------------------------------------------
