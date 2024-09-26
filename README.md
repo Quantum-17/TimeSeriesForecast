@@ -22,6 +22,8 @@ My solution uses ARIMA. After reading up on the various options such as ARIMA, S
 python3 forecast.py
 ```
 
+Trains the model on the entire 2021 daily data and forecasts for the next 365 days (2022). Aggregates the daily forecast and observed counts into monthly counts.
+
 You should see the following print out and graph:
 <pre>
 -----------------------------------
@@ -50,6 +52,8 @@ Dec        309948684      413909629
 ```console 
 python3 model_test.py
 ```
+
+Trains on 2021 Jan-Aug daily counts, then forecasts the 2021 Sep-Dec daily counts and compares against observed.
 
 You should see the following print out and graph:
 <pre>
